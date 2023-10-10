@@ -48,7 +48,7 @@ mainCyclist.addAnimation("SahilRunning",mainRacerImg1);
 mainCyclist.scale=0.07;
   
 
-mainCyclist.setCollider("circle",0,0,10,10);
+mainCyclist.setCollider('circle', 0, 0, 350);
   
 gameOver = createSprite(650,150);
 gameOver.addImage(gameOverImg);
@@ -71,6 +71,8 @@ function draw() {
   
   if(gameState===PLAY){
     
+    gameOver.visible = false;
+
    distance = distance + Math.round(getFrameRate()/50);
    path.velocityX = -(6 + 2*distance/150);
   
@@ -123,6 +125,10 @@ function draw() {
 }else if (gameState === END) {
     gameOver.visible = true;
     
+    if (keyDown(UP_ARROW)){
+      reset();
+    }
+
     textSize(20);
     fill(255);
     text("Pressione a Seta Para Cima para Reiniciar o jogo!",3000,30);
@@ -139,10 +145,6 @@ function draw() {
   
     redCG.setVelocityXEach(0);
     redCG.setLifetimeEach(-1);
-    
-    if (keyDown(UP_ARROW)){
-      reset();
-    }
 
     
 }
@@ -186,6 +188,8 @@ function reset(){
   redCG.destroyEach();
   yellowCG.destroyEach();
 }
+
+
 
 
 
